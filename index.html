@@ -21,7 +21,71 @@
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: #030712;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  body {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+  aside { display: none !important; }
+  main {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: #030712 !important;
+  }
+  #frame {
+    width: 100% !important;
+    max-width: 430px !important;
+    height: 100% !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+  @media(min-width: 640px) {
+    #frame {
+      height: 92vh !important;
+      max-height: 880px !important;
+      border-radius: 40px !important;
+      border: 8px solid #1e293b !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9) !important;
+    }
+  }
+  nav { padding-bottom: calc(0.6rem + env(safe-area-inset-bottom)) !important; }
+  #screens { padding-bottom: calc(5rem + env(safe-area-inset-bottom)) !important; -webkit-overflow-scrolling: touch; }
+  input, select, textarea { font-size: 16px !important; }
+  ::-webkit-scrollbar { width: 0; height: 0; }
+  @keyframes scan {
+    0% { top: 0; opacity: 0.8; }
+    50% { top: 90%; opacity: 1; }
+    100% { top: 0; opacity: 0.8; }
+  }
+  .scan-line {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, #062e1c, #d4af37, transparent);
+    box-shadow: 0 0 15px #d4af37;
+    animation: scan 2.5s infinite ease-in-out;
+  }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  .spin-slow { animation: spin-slow 15s linear infinite; }
+  @media(prefers-reduced-motion: reduce) {
+    .spin-slow, .scan-line { animation: none; }
+  }
+</style>
 </head>
 <body class="bg-[#030712] text-slate-100 font-sans h-full flex items-center justify-center m-0 p-0 overflow-hidden select-none">
 
@@ -66,7 +130,6 @@
         <p id="t-welcomeSub" class="text-xs text-slate-300/80 mt-1.5 max-w-[280px] mx-auto leading-relaxed font-medium"></p>
       </div>
 
-      <!-- Glassmorphism Tab Switcher -->
       <div class="bg-black/30 backdrop-blur-md p-1 rounded-2xl flex my-5 text-xs font-bold border border-white/10">
         <button id="authTab-login" data-mode="login" class="flex-1 py-3 rounded-xl transition-all">Kirish</button>
         <button id="authTab-register" data-mode="register" class="flex-1 py-3 rounded-xl transition-all">Ro‘yxatdan o‘tish</button>
@@ -100,13 +163,11 @@
         <button type="submit" id="authSubmit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-goldWarm via-amber-400 to-goldWarm text-slate-950 font-black text-xs shadow-[0_4px_25px_rgba(212,175,55,0.4)] active:scale-[0.98] transition">Tizimga kirish</button>
       </form>
 
-      <!-- Social Logins -->
       <div class="grid grid-cols-2 gap-3 my-4">
         <button data-social="Google" class="py-3 border border-white/10 bg-black/30 hover:bg-black/50 backdrop-blur rounded-2xl text-xs font-bold flex items-center justify-center space-x-2 text-white shadow-sm active:scale-[0.98] transition"><i class="fa-brands fa-google text-rose-400 text-sm"></i><span>Google</span></button>
         <button data-social="Apple ID" class="py-3 border border-white/10 bg-black/30 hover:bg-black/50 backdrop-blur rounded-2xl text-xs font-bold flex items-center justify-center space-x-2 text-white shadow-sm active:scale-[0.98] transition"><i class="fa-brands fa-apple text-sm"></i><span>Apple ID</span></button>
       </div>
 
-      <!-- Security Notice -->
       <div class="bg-goldWarm/10 border border-goldWarm/30 rounded-2xl p-3.5 text-goldLight text-[11px] font-medium flex items-center space-x-2.5 backdrop-blur">
         <i class="fa-solid fa-shield-halved text-goldWarm text-base"></i>
         <span>Xavfsiz bronlash uchun KYC tasdiqdan o‘ting.</span>
